@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    dalli (1.0.3)
     haml (3.0.25)
     json (1.5.1)
     rack (1.2.2)
@@ -12,6 +13,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  dalli (= 1.0.3)
   haml (= 3.0.25)
   json (= 1.5.1)
   redcarpet (= 1.13.1)
