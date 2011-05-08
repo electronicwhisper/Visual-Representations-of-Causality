@@ -64,7 +64,7 @@ get '/update' do
   
   data = {
     "project_description" => project_description,
-    "sets" => sets
+    "sets" => sets.reverse
   }
   
   json = data.to_json
