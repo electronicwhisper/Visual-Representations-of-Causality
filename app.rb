@@ -22,16 +22,32 @@ get '/css/:stylesheet.css' do
 end
 
 ###################################################
-# App
+# Some settings and helpers
 ###################################################
 
 set :cache, Dalli::Client.new
+
+module Haml::Filters::Markdown2
+  include Haml::Filters::Base
+  
+  def render(text)
+    Redcarpet.new(text, :smart, :hard_wrap).to_html
+  end
+end
+
+###################################################
+# App
+###################################################
 
 get '/' do
   # json = File.open('test.json').gets
   json = settings.cache.get('json')
   data = JSON.parse(json)
   haml :vroc, :locals => {:data => data}
+end
+
+get '/moreinfo' do
+  haml :moreinfo
 end
 
 

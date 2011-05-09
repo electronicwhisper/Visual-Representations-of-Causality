@@ -1,25 +1,21 @@
-!!!
-%html
-  %head
-    %title Visual Representations of Causality
-    %link{ :href => "/css/style.css", :rel => "stylesheet", :type => "text/css", :media => "screen", :charset => "utf-8" }
-    %script{ :src => "http://code.jquery.com/jquery-1.6.min.js" }
-    %script{ :src => "script.js" }
-  %body
-    #container
-      #project_description
-        #header Visual Representations of Causality
-        Visual Representations of Causality is a study of how artists and designers visualize causality and interaction in the projects they are working on. Participants are asked to draw a diagram of how their project works, specifically how the different parts of the project interact with each other.
-        / = Redcarpet.new(data["project_description"], :smart, :hard_wrap).to_html
-      #sets
-        - data["sets"].each do |set|
-          .set
-            .photos
-              .big
-                / %img{:src => set["photos"][0]["url_l"], :width => set["photos"][0]["width_l"], :height => set["photos"][0]["height_l"]}
-                %img{:src => set["photos"][0]["url_l"]}
-              .thumbnails
-                - set["photos"].each do |photo|
-                  %img{:src => photo["url_t"], :width => photo["width_t"], :height => photo["height_t"], :bigimg => photo["url_l"]}
-            .description
-              = Redcarpet.new(set["description"], :smart, :hard_wrap).to_html
+#project_description
+  #header Visual Representations of Causality
+  :markdown2
+    Visual Representations of Causality is a study of how artists and designers visualize causality and interaction in the projects they are working on. Participants are asked to draw a diagram of how their project works, specifically how the different parts of the project interact with each other.
+  
+    <a href="/moreinfo">More information &raquo;</a>
+#sets
+  - data["sets"].each do |set|
+    .set
+      .photos
+        .big
+          / %img{:src => set["photos"][0]["url_l"], :width => set["photos"][0]["width_l"], :height => set["photos"][0]["height_l"]}
+          %img{:src => set["photos"][0]["url_l"]}
+        .thumbnails
+          - set["photos"].each do |photo|
+            %img{:src => photo["url_t"], :width => photo["width_t"], :height => photo["height_t"], :bigimg => photo["url_l"]}
+      .description
+        = Redcarpet.new(set["description"], :smart, :hard_wrap).to_html
+#footer
+  Interviews and notes by
+  %a{:href => "http://www.sundialtone.com/"} Toby Schachman
