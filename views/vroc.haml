@@ -17,7 +17,7 @@
             .photos
               .big
                 / %img{:src => set["photos"][0]["url_l"], :width => set["photos"][0]["width_l"], :height => set["photos"][0]["height_l"]}
-                %img{:src => set["photos"][0]["url_l"], :height => 600}
+                %img{:src => set["photos"][0]["url_l"]}
               .thumbnails
                 - set["photos"].each do |photo|
                   %img{:src => photo["url_t"], :width => photo["width_t"], :height => photo["height_t"], :bigimg => photo["url_l"]}
