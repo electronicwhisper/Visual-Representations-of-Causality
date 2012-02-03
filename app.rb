@@ -42,6 +42,9 @@ end
 get '/' do
   # json = File.open('test.json').gets
   json = settings.cache.get('json')
+  
+  update() unless json
+  
   data = JSON.parse(json)
   haml :vroc, :locals => {:data => data}
 end
@@ -58,7 +61,7 @@ def get_flickr(method, opts={})
   JSON.parse(open(uri).read)
 end
 
-get '/update' do
+def update()
   collection = get_flickr("flickr.collections.getTree", {"collection_id" => "42116005-72157626676063142", "user_id" => "42137335@N07"})["collections"]["collection"][0]
   
   project_description = collection["description"]
@@ -88,4 +91,8 @@ get '/update' do
   settings.cache.set('json', json)
   
   json
+end
+
+get '/update' do
+  update()
 end
